@@ -21,7 +21,7 @@ foreign import java unsafe setDuration :: Int64 -> Java RotateAnimation ()
 foreign import java unsafe "@static @field android.view.animation.Animation.INFINITE" _INFINITE
   :: Int
 
-foreign import java unsafe "@static @field android.view.animation.Animation.RESTRART" _RESTART
+foreign import java unsafe "@static @field android.view.animation.Animation.RESTART" _RESTART
   :: Int
 
 foreign import java unsafe "@static @field android.view.animation.Animation.REVERSE" _REVERSE
@@ -78,7 +78,7 @@ type instance Inherits Interpolator = '[TimeInterpolator]
 
 -- Start android.view.TimeInterpolator
 
-data TimeInterpolator = TimeInterpolatorI @android.view.TimeInterpolator
+data TimeInterpolator = TimeInterpolatorI @android.animation.TimeInterpolator
   deriving Class
 
 -- End android.view.TimeInterpolator
