@@ -1,22 +1,22 @@
+{-# LANGUAGE TypeOperators, TypeFamilies, FlexibleContexts #-}
 module Com.Example.Test where
+
+import Com.Example.Types
 
 import Java
 
-data Context = Context @android.content.Context
-data Toast   = Toast   @android.widget.Toast
+foreign export java "@static eta.android.Animator.animate"
+  animate :: Activity -> Int -> IO ()
+animate activity resourceId = java $ do
+  view <- activity <.> findViewById resourceId
+  applyRotationAnimation view
 
-foreign import java unsafe "@static android.widget.Toast.makeText"
-  makeToast :: (a <: CharSequence) => Context -> a -> Int -> IO Toast
+applyRotationAnimation :: View -> Java a ()
+applyRotationAnimation view = do
+  rotateAnimation <- newRotateAnimation 0.0 180.0
+  rotateAnimation <.> (do setInterpolator =<< newLinearInterpolator
+                          setRepeatCount _INFINITE
+                          setDuration 10000)
+  view <.> startAnimation rotateAnimation
 
-foreign import java unsafe "show"
-  showToast :: Toast -> IO ()
-
-foreign import java unsafe "@static @field android.widget.Toast.LENGTH_LONG"
-  longDuration :: Int
-
-foreign export java "@static com.example.Test.displayToast"
-  displayToast :: Context -> JString -> IO ()
-displayToast context string = do
-  toast <- makeToast context string longDuration
-  showToast toast
 

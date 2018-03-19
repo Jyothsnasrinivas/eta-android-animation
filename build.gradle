@@ -1,5 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
 
     repositories {
@@ -10,10 +8,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.typelead:gradle-eta:0.0.1-SNAPSHOT-99016b1-dirty'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.typelead:gradle-eta:0.5.0'
     }
 }
 
@@ -22,9 +17,15 @@ allprojects {
         google()
         jcenter()
         mavenLocal()
+        maven {
+          url 'https://dl.bintray.com/theanilpaudel/android/'
+        }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+apply plugin: 'eta-base'
+
+eta {
+    useSystemEta = true
+    useSystemEtlas = true
 }
