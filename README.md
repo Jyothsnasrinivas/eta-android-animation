@@ -3,20 +3,35 @@
 ![eta-android-animation preview](eta-android-animation.gif)
 
 ## Prerequisites
-- JDK 8
-- [Eta](https://eta-lang.org/docs/eta-concepts/getting-started/install-eta#source-installation) (Build from source)
-- [gradle-eta](https://github.com/typelead/gradle-eta)
+- JDK 8 or above
 
 ## Running
 
-```
-$ git clone https://github.com/Jyothsnasrinivas/eta-android-animation.git
-$ cd eta-android-animation
-$ ./gradlew assembleDebug
-```
+1. Clone the sources.
+
+   ```
+   $ git clone https://github.com/Jyothsnasrinivas/eta-android-2048.git
+   $ cd eta-android-2048
+   ```
+
+2. Add your Android SDK path in `local.properties`.
+
+   local.properties
+   ```
+   sdk.dir=[SDK-Path-Here]
+   ```
+
+   The easiest way to complete this step is to copy the `local.properties` file from an existing Android Studio project.
+
+3. Build the APK.
+
+   ```
+   $ ./gradlew assembleDebug
+   ```
+
 ## Testing on mobile or emulator
 
-If you want to test it on your phone first enable the developer mode, connect your phone via USB and run the command. Similarly for testing on emulator.
+If you want to test it on your phone first enable the developer mode and run the command below. Similarly for testing on emulator.
 
 ```
 $ ./gradlew installDebug

@@ -1,3 +1,7 @@
+plugins {
+    id 'com.typelead.eta.android'
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'eta-android'
 
@@ -15,7 +19,9 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                          getDefaultEtaProguardFile(),
+                          'proguard-rules.pro'
         }
     }
 }
@@ -24,10 +30,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation eta('eta-java-interop:0.1.3.0')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    eta {
-      compile 'eta-java-interop:0.1.3.0'
-    }
 }
